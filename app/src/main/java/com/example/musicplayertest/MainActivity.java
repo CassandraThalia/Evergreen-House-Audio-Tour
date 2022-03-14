@@ -17,29 +17,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Next button functionality
         next = findViewById(R.id.nextRoom);
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MediaPlayer.class);
+                try {
+                    Intent intent = new Intent(MainActivity.this, MediaPlayer.class);
 
-                Bundle extras = new Bundle();
-                extras.putInt("media", R.raw.stop_0);
-                extras.putInt("imgId", R.drawable.stop_0);
-                extras.putInt("titleImgId", R.drawable.title_stop_0);
-                intent.putExtras(extras);
+                    Bundle extras = new Bundle();
+                    extras.putInt("media", R.raw.stop_0);
+                    extras.putInt("imgId", R.drawable.stop_0);
+                    extras.putInt("titleImgId", R.drawable.title_stop_0);
+                    intent.putExtras(extras);
 
-                startActivity(intent);
+                    startActivity(intent);
+                } catch (Exception e){
+                    System.out.println("Error loading media player: " + e);
+                }
+
             }
         });
 
+        //All Stops button functionality
         all = findViewById(R.id.allRooms);
-
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AllStopsList.class));
+                try {
+                    startActivity(new Intent(MainActivity.this, AllStopsList.class));
+                }
+                catch (Exception e){
+                    System.out.println("Error loading all stops list: " + e);
+                }
             }
         });
     }
